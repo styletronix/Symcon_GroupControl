@@ -1,0 +1,153 @@
+{
+  "elements": [
+  {
+    "type": "List",
+    "name": "actors",
+    "caption": "Actors",
+    "rowCount": 5,
+    "add": true,
+    "delete": true,
+    "columns": [{
+        "caption": "Actor",
+        "name": "InstanceID", 
+        "width": "auto",
+        "add": 0,
+        "edit": {
+            "type": "SelectVariable"
+        }
+    }]
+},{
+    "type": "List",
+    "name": "sensors",
+    "caption": "Sensors",
+    "rowCount": 5,
+    "add": true,
+    "delete": true,
+    "columns": [{
+        "caption": "Sensors",
+        "name": "InstanceID", 
+        "width": "auto",
+        "add": 0,
+        "edit": {
+            "type": "SelectVariable"
+        }
+    }, {
+        "caption": "Type",
+        "name": "typ",
+        "width": "150px",
+        "add": 0,
+        "edit": {
+            "type": "Select",
+			"options": [
+				{ "caption": "Motion", "value": 0 },
+				{ "caption": "Button", "value": 1 }
+				]
+        }
+    }]
+},{
+    "type": "List",
+    "name": "brightness",
+    "caption": "Brightness",
+    "rowCount": 5,
+    "add": true,
+    "delete": true,
+    "columns": [{
+        "caption": "Brightness-Sensors",
+        "name": "InstanceID", 
+        "width": "auto",
+        "add": 0,
+        "edit": {
+            "type": "SelectVariable"
+        }
+    }]
+},
+	{
+      "type": "Label",
+      "label": "0 = Global use of motion and brightness. 1 = motion and brightness are combined per device if it is supplied from the same device instance."
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "BrightnessSegmentationLevel",
+      "caption": "Brightness segmentation level"
+    },
+	{
+      "type": "NumberSpinner",
+      "name": "PresenceOffDelay",
+      "caption": "Delay for absent"
+    },
+	{
+      "type": "Label",
+      "label": "After absent, time for which the dimm-level is used before switching off"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "PresenceTimeout",
+      "caption": "Dimm delay"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "PresenceDimmerOffPercent",
+      "caption": "Dimm %"
+    },
+	{
+      "type": "Label",
+      "label": "Presence timeout (in seconds) switches to absent if no sensor refreshes its status during this time."
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "PresenceRefreshTimeout",
+      "caption": "Presence timeout"
+    },
+	{
+      "type": "Label",
+      "label": "Resets the absent template to the default values set by 'save as template' after a time period"
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "PresenceResetToTemplateTimeout",
+      "caption": "Reset Timeout"
+    }
+  ],
+    "actions":
+    [
+      {
+        "type": "Button",
+        "label": "OFF",
+        "onClick": "SXGRP_SetState($id, false);"
+      },
+      {
+        "type": "Button",
+        "label": "ON",
+        "onClick": "SXGRP_SetState($id, true);"
+      },
+      {
+        "type": "Button",
+        "label": "Activate ALERT Mode",
+        "onClick": "SXGRP_SetAlertState($id, true);"
+      },
+       {
+        "type": "Button",
+        "label": "Deactivate ALERT Mode",
+        "onClick": "SXGRP_SetAlertState($id, false);"
+      },
+       {
+        "type": "Button",
+        "label": "Presence",
+        "onClick": "SXGRP_SetPresenceState($id, true);"
+      },
+       {
+        "type": "Button",
+        "label": "Absent",
+        "onClick": "SXGRP_SetPresenceState($id, false);"
+      },
+       {
+        "type": "Button",
+        "label": "Save as template",
+        "onClick": "SXGRP_StoreCurrentAsPresenceStateTemplate($id);"
+      }
+    ],
+    "status":
+    [
+        { "code": 102, "icon": "active", "caption": "OK" }
+    ]
+}
